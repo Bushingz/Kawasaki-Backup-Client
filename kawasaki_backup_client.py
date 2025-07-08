@@ -27,7 +27,7 @@ class KawasakiBackupClient:
       base_name (str): Base filename for saved backup (no extension).
       port (int): Telnet port (default=23).
       username (str): Login username (default='as').
-      full (bool): True for full backup (.ase), False for program-only (.as).
+      full (bool): True for full backup, False for program-only (.as).
       on_status (callable): Callback for status updates: fn(str).
       on_progress (callable): Callback for progress: fn(int bytes_written).
       on_error (callable): Callback on error: fn(Exception).
@@ -134,7 +134,7 @@ class KawasakiBackupClient:
         """
         # Prepare filenames
         safe_name = re.sub(r'[^A-Za-z0-9_.-]', '_', self.base_name)
-        ext = 'ase' if self.full else 'as'
+        ext = 'as'
         out_path = Path(f"{safe_name}.{ext}")
         timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         debug_path = Path(f"debug_{safe_name}_{timestamp}.log")
